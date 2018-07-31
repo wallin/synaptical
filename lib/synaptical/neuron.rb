@@ -44,7 +44,7 @@ module Synaptical
       # eq. 15.
       @state = selfconnection.gain * selfconnection.weight * state + bias
 
-      connections.inputs.each do |_, neuron|
+      connections.inputs.each_value do |neuron|
         @state += neuron.from.activation * neuron.weight * neuron.gain
       end
 
@@ -52,7 +52,7 @@ module Synaptical
       @activation = squash.call(@state)
 
       # f'(s)
-      @derivative = squash.call(@state, true)
+      @derivative = squash.derivate(@activation)
 
       # Update traces
       influences = []

@@ -3,15 +3,15 @@
 module Synaptical
   # Squashing functions
   module Squash
-    # Logistic function
-    module Logistic
+    # Hyperbolic tangens function
+    module Tanh
       class << self
-        # Apply logistic function for x_val
+        # Apply hyperbolic tangens function for x_val
         # @param x_val [Numeric] X value
         #
         # @return [Float] Y value
         def call(x_val)
-          1.0 / (1.0 + ::Math.exp(-x_val))
+          ::Math.tanh(x_val)
         end
 
         # Calculate derivate of value
@@ -19,7 +19,7 @@ module Synaptical
         #
         # @return [Float] Derivate value
         def derivate(x_val)
-          (x_val * (1 - x_val))
+          1.0 - x_val**2
         end
       end
     end

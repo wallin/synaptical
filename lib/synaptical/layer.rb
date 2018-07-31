@@ -15,11 +15,12 @@ module Synaptical
       ONE_TO_ONE: 'ONE TO ONE'
     }.freeze
 
-    attr_reader :list, :connected_to
+    attr_reader :list, :connected_to, :size
 
     # Creates a new layer with a given size
     # @param size [Integer] Size of layer
     def initialize(size)
+      @size = size
       @connected_to = []
       @list = Array.new(size).map { Synaptical::Neuron.new }
     end
@@ -129,6 +130,7 @@ module Synaptical
     # @param neuron [Synaptical::Neuron] The new neuron
     def add(neuron = Neuron.new)
       list << neuron
+      size += 1
     end
 
     # Configure layer options
@@ -136,13 +138,6 @@ module Synaptical
     # @return [Hash] Hash with options options
     def set(_options)
       raise 'TODO'
-    end
-
-    # Returns the size of the layer
-    #
-    # @return [Integer] Size of layer
-    def size
-      list.size
     end
   end
 end

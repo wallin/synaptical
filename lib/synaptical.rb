@@ -2,6 +2,7 @@
 
 %w[
   synaptical/squash/logistic
+  synaptical/squash/tanh
   synaptical/connection
   synaptical/layer
   synaptical/layer_connection
