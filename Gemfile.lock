@@ -1,0 +1,47 @@
+PATH
+  remote: .
+  specs:
+    synaptical (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    allocation_tracer (0.6.3)
+    benchmark-ips (2.7.2)
+    benchmark-memory (0.1.2)
+      memory_profiler (~> 0.9)
+    diff-lcs (1.3)
+    hotch (0.5.0)
+      allocation_tracer (~> 0.6.3)
+      stackprof (~> 0.2.10)
+    memory_profiler (0.9.11)
+    rake (10.5.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
+    stackprof (0.2.12)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  benchmark-ips
+  benchmark-memory
+  bundler (~> 1.16)
+  hotch
+  rake (~> 10.0)
+  rspec (~> 3.0)
+  synaptical!
+
+BUNDLED WITH
+   1.16.3
