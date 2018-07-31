@@ -64,6 +64,39 @@ network.activate([1, 1])
   # => [0.0011764423621223423]
 ```
 
+or create the network with the Perceptron architect:
+
+```ruby
+
+network = Synaptical::Architect::Perceptron.new(2, 3, 1)
+
+learning_rate = 0.3
+
+10_000.times do
+  network.activate([0, 0])
+  network.propagate(learning_rate, [0])
+
+  network.activate([0, 1])
+  network.propagate(learning_rate, [1])
+
+  network.activate([1, 0])
+  network.propagate(learning_rate, [1])
+
+  network.activate([1, 1])
+  network.propagate(learning_rate, [0])
+end
+
+network.activate([0, 0])
+  # => [0.00020797967275049887]
+network.activate([0, 1])
+  # => [0.9991989909682668]
+network.activate([1, 0])
+  # => [0.9992882541963027]
+network.activate([1, 1])
+  # => [0.0011764423621223423]
+
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

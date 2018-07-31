@@ -9,6 +9,7 @@
   synaptical/network
   synaptical/neuron
   synaptical/version
+  synaptical/architect/perceptron
 ].each(&method(:require))
 
 module Synaptical; end
