@@ -8,8 +8,10 @@
   synaptical/layer_connection
   synaptical/network
   synaptical/neuron
+  synaptical/trainer
   synaptical/version
   synaptical/architect/perceptron
+  synaptical/cost/mse
   synaptical/serializer/json
 ].each(&method(:require))
 
