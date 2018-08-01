@@ -277,7 +277,7 @@ module Synaptical
     def reset
       clear
       CONNECTION_TYPES.map { |ct| connections.send(ct) }.each do |conn_group|
-        conn_group.each { |conn| conn.weight = rand * 0.2 - 0.1 }
+        conn_group.each_value { |conn| conn.weight = rand * 0.2 - 0.1 }
       end
 
       @bias = rand * 0.2 - 0.1
