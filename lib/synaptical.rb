@@ -10,6 +10,7 @@
   synaptical/neuron
   synaptical/version
   synaptical/architect/perceptron
+  synaptical/serializer/json
 ].each(&method(:require))
 
 module Synaptical; end

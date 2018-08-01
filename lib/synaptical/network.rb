@@ -111,50 +111,7 @@ module Synaptical
     def to_json
       restore
 
-      list = neurons
-      neurons = []
-      connections = []
-
-      ids = {}
-      list.each_with_index do |nr, i|
-        neuron = nr[:neuron]
-        ids[neuron.id] = i
-        copy = {
-          trace: { elegibility: {}, extended: {} },
-          state: neuron.state,
-          old: neuron.old,
-          activation: neuron.activation,
-          bias: neuron.bias,
-          layer: nr[:layer],
-          squash: 'LOGISTIC'
-        }
-
-        neurons << copy
-      end
-
-      list.each do |nr|
-        neuron = nr[:neuron]
-
-        neuron.connections.projected.each do |_id, conn|
-          connections << {
-            from: ids[conn.from.id],
-            to: ids[conn.to.id],
-            weight: conn.weight,
-            gater: conn.gater ? ids[conn.gater.id] : nil
-          }
-        end
-
-        next unless neuron.selfconnected?
-
-        connections << {
-          from: ids[neuron.id],
-          to: ids[neuron.id],
-          weight: neuron.selfconnection.weight,
-          gater: neuron.selfconnection.gater ? ids[neuron.selfconnection.gater.id] : nil
-        }
-      end
-
-      { neurons: neurons, connections: connections }
+      Synaptical::Serializer::JSON.as_json(self)
     end
 
     def to_dot
