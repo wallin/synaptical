@@ -2,6 +2,8 @@
 
 Synaptical is a Ruby port of [synaptic.js](https://github.com/cazala/synaptic)
 
+**NOTE: This is work in progress and some componets of synaptic.js are still missing**
+
 ## Installation
 
 Add this line to your application's Gemfile:
