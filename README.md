@@ -66,36 +66,27 @@ network.activate([1, 1])
   # => [0.0011764423621223423]
 ```
 
-or create the network with the Perceptron architect:
+or create the network with the Perceptron architect and the Trainer:
 
 ```ruby
 
 network = Synaptical::Architect::Perceptron.new(2, 3, 1)
-
-learning_rate = 0.3
-
-10_000.times do
-  network.activate([0, 0])
-  network.propagate(learning_rate, [0])
-
-  network.activate([0, 1])
-  network.propagate(learning_rate, [1])
-
-  network.activate([1, 0])
-  network.propagate(learning_rate, [1])
-
-  network.activate([1, 1])
-  network.propagate(learning_rate, [0])
-end
+trainer = Synaptical::Trainer.new(network)
+trainer.train([
+  { input: [0, 0], output: [0] },
+  { input: [0, 1], output: [1] },
+  { input: [1, 0], output: [1] },
+  { input: [1, 1], output: [0] }
+])
 
 network.activate([0, 0])
-  # => [0.00020797967275049887]
+  # => [0.04564830744951351]
 network.activate([0, 1])
-  # => [0.9991989909682668]
+  # => [0.9590894310802323]
 network.activate([1, 0])
-  # => [0.9992882541963027]
+  # => [0.9112358846059638]
 network.activate([1, 1])
-  # => [0.0011764423621223423]
+  # => [0.0832359653922508]
 
 ```
 
