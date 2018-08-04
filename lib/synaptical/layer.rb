@@ -130,7 +130,7 @@ module Synaptical
     # @param neuron [Synaptical::Neuron] The new neuron
     def add(neuron = Neuron.new)
       list << neuron
-      size += 1
+      @size += 1
     end
 
     # Configure layer options

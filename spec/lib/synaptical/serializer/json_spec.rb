@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 RSpec.describe Synaptical::Serializer::JSON do
+  let(:network) { Synaptical::Architect::Perceptron.new(2, 3, 1) }
+
   describe '::as_json' do
     subject(:as_json) { described_class.as_json(network) }
-
-    let(:network) { Synaptical::Architect::Perceptron.new(1, 3, 2) }
 
     context 'with valid network' do
       it { is_expected.to be_a(Hash) }
 
       describe 'neurons.size' do
-        subject { as_json[:neurons].size }
+        subject { as_json['neurons'].size }
 
         it { is_expected.to eq 6 }
       end
 
       describe 'connections.size' do
-        subject { as_json[:connections].size }
+        subject { as_json['connections'].size }
 
         it { is_expected.to eq 9 }
       end
@@ -30,6 +30,37 @@ RSpec.describe Synaptical::Serializer::JSON do
   end
 
   describe '::load' do
-    pending
+    subject(:from_json) { described_class.from_json(json) }
+
+    let(:json) { described_class.as_json(network) }
+
+    describe 'de-serialized network' do
+      it { is_expected.to have_attributes(inputs: network.inputs, outputs: network.outputs) }
+    end
+
+    context 'with serialized XOR network' do
+      subject { from_json.activate(input).first.round }
+
+      before do
+        Synaptical::Trainer.new(network).train([
+          { input: [0, 0], output: [0] },
+          { input: [0, 1], output: [1] },
+          { input: [1, 0], output: [1] },
+          { input: [1, 1], output: [0] }
+        ])
+      end
+
+      describe 'when input is [0, 1]' do
+        let(:input) { [0, 1] }
+
+        it { is_expected.to eq 1 }
+      end
+
+      describe 'when input is [1, 1]' do
+        let(:input) { [1, 1] }
+
+        it { is_expected.to eq 0 }
+      end
+    end
   end
 end

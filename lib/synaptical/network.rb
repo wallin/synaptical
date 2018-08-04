@@ -118,8 +118,14 @@ module Synaptical
       raise 'TODO'
     end
 
-    def from_json
-      raise 'TODO'
+    class << self
+      # Loads a network from serialized format
+      # @param json [Hash] Hash containing network representation
+      #
+      # @return [Synaptical::Network] De-serialized network
+      def from_json(json)
+        Synaptical::Serializer::JSON.from_json(json)
+      end
     end
   end
 end

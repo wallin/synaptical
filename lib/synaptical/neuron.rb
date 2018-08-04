@@ -10,8 +10,9 @@ module Synaptical
     Error = Struct.new(:responsibility, :projected, :gated)
     Trace = Struct.new(:elegibility, :extended, :influences)
 
-    attr_reader :id, :connections, :error, :trace, :state, :old, :activation,
-                :selfconnection, :squash, :neighbors, :bias
+    attr_reader :id, :connections, :error, :trace, :selfconnection, :neighbors
+    attr_accessor :state, :old, :activation, :bias, :squash
+
     # Creates an instance of a Neuron
     def initialize
       @id = self.class.uid
