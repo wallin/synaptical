@@ -36,6 +36,7 @@ module Synaptical
         list.map(&:activate)
       else
         raise ArgumentError unless input.size == size
+
         list.zip(input).map { |neuron, value| neuron.activate(value) }
       end
     end
@@ -50,6 +51,7 @@ module Synaptical
         list.each { |neuron| neuron.propagate(rate) }
       else
         raise ArgumentError unless target.size == size
+
         list.zip(target).each { |neuron, value| neuron.propagate(rate, value) }
       end
     end

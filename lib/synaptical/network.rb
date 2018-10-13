@@ -18,6 +18,7 @@ module Synaptical
     # @return [Array<Numeric>] Output
     def activate(input)
       raise if optimized
+
       layers.input.activate(input)
       layers.hidden.each(&:activate)
       layers.output.activate
@@ -28,6 +29,7 @@ module Synaptical
     # @param target [Array<Numeric>] Target values
     def propagate(rate, target)
       raise if optimized
+
       layers.output.propagate(rate, target)
       layers.hidden.each { |layer| layer.propagate(rate) }
     end
@@ -38,6 +40,7 @@ module Synaptical
     # @param weights [type] [description]
     def project(unit, type, weights)
       raise if optimized
+
       case unit
       when Network
         layers.output.project(unit.layers.input, type, weights)
@@ -50,6 +53,7 @@ module Synaptical
 
     def gate(connection, type)
       raise if optimized
+
       layers.output.gate(connection, type)
     end
 

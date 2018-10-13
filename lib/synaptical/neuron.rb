@@ -157,7 +157,8 @@ module Synaptical
         gradient = @error.projected * trace.elegibility[input_neuron.id]
         trace.extended.each do |id, _|
           neuron = neighbors[id]
-          gradient += neuron.error.responsibility *
+          gradient +=
+            neuron.error.responsibility *
             trace.extended[neuron.id][input_neuron.id]
         end
 
@@ -245,7 +246,8 @@ module Synaptical
       result = Connection.new
 
       if self == neuron
-        return nil unless selfconnected?
+        return unless selfconnected?
+
         result.type = :selfconnection
         result.connection = selfconnection
         return result
@@ -256,6 +258,7 @@ module Synaptical
         .flatten
         .each do |connection|
           next unless connection.to == neuron || connection.from == neuron
+
           result.type = type
           result.connection = type
           return result

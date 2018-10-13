@@ -24,11 +24,12 @@ module Synaptical
     # Initialize connection type if not provided
     def init_type
       return unless type.nil?
+
       @type = if from == to
                 Synaptical::Layer::CONNECTION_TYPE[:ONE_TO_ONE]
               else
                 Synaptical::Layer::CONNECTION_TYPE[:ALL_TO_ALL]
-      end
+              end
     end
 
     def connect!(weights)

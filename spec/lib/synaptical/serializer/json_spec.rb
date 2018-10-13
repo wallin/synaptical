@@ -42,12 +42,14 @@ RSpec.describe Synaptical::Serializer::JSON do
       subject { from_json.activate(input).first.round }
 
       before do
-        Synaptical::Trainer.new(network).train([
-          { input: [0, 0], output: [0] },
-          { input: [0, 1], output: [1] },
-          { input: [1, 0], output: [1] },
-          { input: [1, 1], output: [0] }
-        ])
+        Synaptical::Trainer.new(network).train(
+          [
+            { input: [0, 0], output: [0] },
+            { input: [0, 1], output: [1] },
+            { input: [1, 0], output: [1] },
+            { input: [1, 1], output: [0] }
+          ]
+        )
       end
 
       describe 'when input is [0, 1]' do
